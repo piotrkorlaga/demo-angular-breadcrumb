@@ -9,24 +9,18 @@ const appRoutes: Routes = [
       {path: '', redirectTo: '/africa', pathMatch: 'full'},
       {
         path: 'africa',
-        loadChildren: 'src/app/africa/africa.module#AfricaModule',
-        data: {
-          breadcrumb: 'Africa'
-        }
+        loadChildren: 'src/app/africa/africa.module#AfricaModule'
       },
       {
         path: 'europe',
-        loadChildren: 'src/app/europe/europe.module#EuropeModule',
-        data: {
-          breadcrumb: 'Europe'
-        }
+        loadChildren: 'src/app/europe/europe.module#EuropeModule'
       }
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

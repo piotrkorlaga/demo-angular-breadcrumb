@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AfricanCountriesComponent} from './african-countries/african-countries.component';
-import {NigeriaComponent} from './nigeria/nigeria.component';
 import {EgyptComponent} from './egypt/egypt.component';
 import {CairoComponent} from './egypt/cairo/cairo.component';
 import {GizaComponent} from './egypt/giza/giza.component';
@@ -10,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      breadcrumb: 'African countries list'
+      breadcrumb: 'Africa'
     },
     children: [
       {
@@ -19,21 +18,6 @@ const routes: Routes = [
           breadcrumb: null
         },
         component: AfricanCountriesComponent,
-      },
-      {
-        path: 'nigeria',
-        data: {
-          breadcrumb: 'Nigeria'
-        },
-        children: [
-          {
-            path: '',
-            data: {
-              breadcrumb: null
-            },
-            component: NigeriaComponent,
-          }
-        ],
       },
       {
         path: 'egypt',
