@@ -35,8 +35,6 @@ export class BreadcrumbComponent implements OnInit {
         url += `/${routeURL}`;
       }
 
-      console.log(url);
-      console.log(child.snapshot.data[BreadcrumbComponent.ROUTE_DATA_BREADCRUMB]);
       const label = child.snapshot.data[BreadcrumbComponent.ROUTE_DATA_BREADCRUMB];
       if (!isNullOrUndefined(label)) {
         breadcrumbs.push({label, url});
