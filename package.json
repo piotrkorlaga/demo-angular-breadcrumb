@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href '/demo-angular-breadcrumb' && ngh --dir=dist/demo-angular-breadcrumb"
+    "deploy": "ng build --prod --base-href 'https://piotrkorlaga.github.io/demo-angular-breadcrumb/' && ngh"
   },
   "private": true,
   "dependencies": {
