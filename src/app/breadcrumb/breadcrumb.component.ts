@@ -11,18 +11,18 @@ import {filter} from 'rxjs/operators';
 })
 export class BreadcrumbComponent implements OnInit {
   static readonly ROUTE_DATA_BREADCRUMB = 'breadcrumb';
-  readonly home = {icon: 'pi pi-home', url: 'home'};
+  readonly home = {icon: 'pi pi-home', routerLink: 'home'};
   menuItems: MenuItem[];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => this.menuItems = this.createBreadcrumbs(this.activatedRoute.root));
+
+      .subscribe(() => this.menuItems = this.createBreadcrumbs(this.activatedRoute));
   }
 
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '#', breadcrumbs: MenuItem[] = []): MenuItem[] {
+  private createBreadcrumbs(route: ActivatedRoute, routerLink: string = '#', breadcrumbs: MenuItem[] = []): MenuItem[] {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) {
@@ -32,15 +32,16 @@ export class BreadcrumbComponent implements OnInit {
     for (const child of children) {
       const routeURL: string = child.snapshot.url.map(segment => segment.path).join('/');
       if (routeURL !== '') {
-        url += `/${routeURL}`;
+        routerLink += `/${routeURL}`;
       }
 
       const label = child.snapshot.data[BreadcrumbComponent.ROUTE_DATA_BREADCRUMB];
       if (!isNullOrUndefined(label)) {
-        breadcrumbs.push({label, url});
+        breadcrumbs.push({label, routerLink});
       }
 
-      return this.createBreadcrumbs(child, url, breadcrumbs);
+      return this.createBreadcrumbs(child, routerLink, breadcrumbs);
     }
+    return this.menuItems
   }
 }
